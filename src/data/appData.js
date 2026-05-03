@@ -1,4 +1,4 @@
-const days = [
+export const workoutDays = [
     {
         name: "Monday", type: "Push", typeClass: "push",
         exercises: [
@@ -80,7 +80,7 @@ const days = [
     }
 ];
 
-const meals = [
+export const meals = [
     {
         day: "☕ 5:50 AM — Pre-Workout (Fast Energy)",
         kcal: "~100 kcal",
@@ -135,7 +135,7 @@ const meals = [
     }
 ];
 
-const routineMorning = [
+export const routineMorning = [
     { time: "05:50 AM", activity: "Wake Up + Pre-Workout Coffee", icon: "⏰" },
     { time: "06:00 AM", activity: "Gym Session (PPL Split)", icon: "🏋️‍♂️" },
     { time: "07:15 AM", activity: "Home: Shower & Post-Workout Meal", icon: "🍱" },
@@ -147,7 +147,7 @@ const routineMorning = [
     { time: "10:30 PM", activity: "Sleep (7.5 Hours)", icon: "😴" },
 ];
 
-const routineEvening = [
+export const routineEvening = [
     { time: "05:50 AM", activity: "Wake Up + Coffee", icon: "⏰" },
     { time: "06:20 AM", activity: "Leave for Office (Early start)", icon: "🚗" },
     { time: "08:30 AM", activity: "Reach Office + Breakfast", icon: "🍳" },
@@ -159,7 +159,7 @@ const routineEvening = [
     { time: "11:30 PM", activity: "Sleep (Shorter cycle)", icon: "😴" },
 ];
 
-const tips = [
+export const tips = [
     { icon: "😴", title: "Sleep is Priority", text: "Since you wake at 5:50 AM, you MUST be in bed by 10:30 PM. Recovery happens during sleep, not in the gym." },
     { icon: "🚗", title: "Commute = Recovery", text: "Use your 2-hour commute to stay hydrated. Drink at least 1L of water during your drive/ride." },
     { icon: "🥩", title: "160g Protein Goal", text: "Hitting protein at 11 AM and 1:30 PM is crucial to prevent muscle loss during your long office hours." },
@@ -168,195 +168,9 @@ const tips = [
     { icon: "📸", title: "Waist Measurements", text: "Take photos and waist measurements every Sunday. The scale lies, the mirror doesn't." },
 ];
 
-// App State
-let currentWeek = 1;
-let weekChecks = JSON.parse(localStorage.getItem('recomp_progress')) || {};
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    renderDays(currentWeek);
-    renderMeals();
-    renderTips();
-    renderRoutine('morning');
-    
-    // Register Service Worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').then(reg => {
-                console.log('SW registered:', reg);
-            }).catch(err => {
-                console.log('SW registration failed:', err);
-            });
-        });
-    }
-});
-
-function renderDays(week) {
-    const grid = document.getElementById('dayGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    if (!weekChecks[week]) weekChecks[week] = {};
-
-    days.forEach((day, i) => {
-        const checked = weekChecks[week][i] || false;
-        const card = document.createElement('div');
-        card.className = 'day-card';
-
-        let exerciseHTML = day.isRest
-            ? `<p style="color:var(--muted);font-size:13px;padding:16px 0">Complete rest. No gym. Walk, stretch, foam roll. Let your body rebuild. 💤</p>`
-            : `<ul class="exercise-list">
-                ${day.exercises.map(ex => `
-                    <li class="exercise-item">
-                        <span class="ex-name">${ex.name}</span>
-                        <span class="ex-sets">${ex.sets}</span>
-                    </li>
-                `).join('')}
-            </ul>
-            ${day.cardio ? `<div class="cardio-note">Cardio Finisher: ${day.cardio}</div>` : ''}`;
-
-        card.innerHTML = `
-            <div class="day-header" onclick="toggleElement(this)">
-                <div class="day-label">
-                    <span class="day-name">${day.name}</span>
-                    <span class="day-type type-${day.typeClass}">${day.type}</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:16px">
-                    ${!day.isRest ? `<div class="checkbox ${checked ? 'checked' : ''}" onclick="toggleCheck(event, ${i})"></div>` : ''}
-                    <span class="chevron">▼</span>
-                </div>
-            </div>
-            <div class="day-body">
-                ${exerciseHTML}
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-    updateProgress(week);
-}
-
-function toggleElement(header) {
-    const body = header.nextElementSibling;
-    const chevron = header.querySelector('.chevron');
-    const isOpen = body.classList.contains('open');
-    
-    body.classList.toggle('open');
-    chevron.classList.toggle('open');
-}
-
-function toggleCheck(e, idx) {
-    e.stopPropagation();
-    if (!weekChecks[currentWeek]) weekChecks[currentWeek] = {};
-    weekChecks[currentWeek][idx] = !weekChecks[currentWeek][idx];
-    
-    // Save to localStorage
-    localStorage.setItem('recomp_progress', JSON.stringify(weekChecks));
-    
-    const checkbox = e.target;
-    checkbox.classList.toggle('checked');
-    updateProgress(currentWeek);
-}
-
-function updateProgress(week) {
-    const checks = weekChecks[week] || {};
-    const done = Object.values(checks).filter(Boolean).length;
-    const total = 6; // Sunday is rest
-    const pct = Math.min((done / total) * 100, 100);
-    
-    const fill = document.getElementById('progressFill');
-    const text = document.getElementById('progressText');
-    
-    if (fill) fill.style.width = pct + '%';
-    if (text) text.textContent = `${done} / ${total} sessions`;
-}
-
-function setWeek(w, btn) {
-    currentWeek = w;
-    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderDays(w);
-}
-
-function renderMeals() {
-    const grid = document.getElementById('mealGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    meals.forEach((day, i) => {
-        const d = document.createElement('div');
-        d.className = 'meal-day';
-        d.innerHTML = `
-            <div class="meal-day-header" onclick="toggleElement(this)">
-                <span class="meal-day-name">${day.day}</span>
-                <span class="meal-day-kcal">Target: <span>${day.kcal}</span></span>
-                <span class="chevron" style="margin-left:10px">▼</span>
-            </div>
-            <div class="meal-day-body ${i === 0 ? 'open' : ''}">
-                ${day.meals.map(m => `
-                    <div class="meal-row">
-                        <span class="meal-time">${m.time}</span>
-                        <div>
-                            <div class="meal-food">${m.food}</div>
-                            <div class="meal-macros">${m.macros}</div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        grid.appendChild(d);
-    });
-}
-
-function renderTips() {
-    const grid = document.getElementById('tipsGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    tips.forEach(t => {
-        const c = document.createElement('div');
-        c.className = 'tip-card';
-        c.innerHTML = `
-            <div class="tip-icon">${t.icon}</div>
-            <div class="tip-title">${t.title}</div>
-            <div class="tip-text">${t.text}</div>
-        `;
-        grid.appendChild(c);
-    });
-}
-
-let currentRoutine = 'morning';
-function renderRoutine(type) {
-    const grid = document.getElementById('routineGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    
-    const data = type === 'morning' ? routineMorning : routineEvening;
-    
-    data.forEach(item => {
-        const d = document.createElement('div');
-        d.className = 'tl-item';
-        d.innerHTML = `
-            <div class="tl-dot"></div>
-            <div class="tl-week">${item.time}</div>
-            <div class="tl-title">${item.icon} ${item.activity}</div>
-        `;
-        grid.appendChild(d);
-    });
-}
-
-window.setRoutine = function(type, event) {
-    currentRoutine = type;
-    document.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    renderRoutine(type);
-};
-
-window.showTab = function(id, event) {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    
-    document.getElementById(id).classList.add('active');
-    if (event) {
-        event.target.classList.add('active');
-    } else {
-        const tab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.toLowerCase().includes(id));
-        if (tab) tab.classList.add('active');
-    }
-};
+export const timelineSteps = [
+    { week: "Week 1–2", title: "The Adjustment Phase", desc: "Your body adapts to the new volume. Expect soreness, some fatigue. Water weight drops 1–2 kg. Bloating reduces noticeably. Stick to the plan even if the scale doesn't move much — internal changes are happening." },
+    { week: "Week 3–4", title: "First Visible Changes", desc: "Waist definition begins appearing. Clothes feel slightly looser. Energy improves. Scale drops 1–1.5 kg of actual fat. Strength in lifts starts climbing — this is recomposition working." },
+    { week: "Week 5–6", title: "Momentum Builds", desc: "Belly visibly flatter. Muscle tone emerging in chest, shoulders, arms. People start noticing. This is the phase where most people quit — don't. You're 70% there." },
+    { week: "Week 7–8", title: "Transformation Complete", desc: "3–5 cm off waist. 2–3 kg fat lost, muscle gained. Significantly leaner physique. Lower belly pouch reduced. Build on this — you now have momentum and habits locked in." }
+];

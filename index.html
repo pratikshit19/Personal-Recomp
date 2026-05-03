@@ -1,139 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>RECOMP | 30–60 Day Fat Loss Plan</title>
-
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0a0a0a">
     <meta name="description" content="Your personal 30-60 day body recomposition and fat loss tracker.">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-    <header>
-        <div class="header-tag">📍 Personalized Routine: 5:50 AM Wake Up | Morning Gym</div>
-        <h1>30–60 DAY<span>BELLY FAT DESTROYER</span></h1>
-        <div class="header-stats">
-            <div class="stat"><strong>5–6x</strong>Weekly Sessions</div>
-            <div class="stat"><strong>2,050</strong>Daily Kcal Target</div>
-            <div class="stat"><strong>160g</strong>Daily Protein</div>
-            <div class="stat"><strong>PPL×2</strong>Training Split</div>
-        </div>
-    </header>
-
-    <div class="tabs">
-        <button class="tab active" onclick="showTab('workout', event)">Workout Tracker</button>
-        <button class="tab" onclick="showTab('routine', event)">Daily Schedule</button>
-        <button class="tab" onclick="showTab('meals', event)">Meal Plan</button>
-        <button class="tab" onclick="showTab('timeline', event)">Timeline</button>
-        <button class="tab" onclick="showTab('tips', event)">Key Rules</button>
-    </div>
-
-    <div class="content">
-
-        <!-- WORKOUT PANEL -->
-        <div id="workout" class="panel active">
-            <div class="progress-wrap">
-                <div class="progress-label">
-                    <span>Weekly Progress</span>
-                    <span id="progressText">0 / 6 sessions</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width:0%"></div>
-                </div>
-            </div>
-
-            <div class="week-nav">
-                <button class="week-btn active" onclick="setWeek(1,this)">Week 1</button>
-                <button class="week-btn" onclick="setWeek(2,this)">Week 2</button>
-                <button class="week-btn" onclick="setWeek(3,this)">Week 3</button>
-                <button class="week-btn" onclick="setWeek(4,this)">Week 4</button>
-                <button class="week-btn" onclick="setWeek(5,this)">Week 5</button>
-                <button class="week-btn" onclick="setWeek(6,this)">Week 6</button>
-                <button class="week-btn" onclick="setWeek(7,this)">Week 7</button>
-                <button class="week-btn" onclick="setWeek(8,this)">Week 8</button>
-            </div>
-
-            <div class="day-grid" id="dayGrid"></div>
-        </div>
-
-        <!-- ROUTINE PANEL -->
-        <div id="routine" class="panel">
-            <div class="sub-tabs">
-                <button class="sub-tab active" onclick="setRoutine('morning', event)">Morning Gym</button>
-                <button class="sub-tab" onclick="setRoutine('evening', event)">Evening Gym</button>
-            </div>
-            <div class="timeline" id="routineGrid"></div>
-        </div>
-
-        <!-- MEAL PANEL -->
-        <div id="meals" class="panel">
-            <div id="mealGrid"></div>
-        </div>
-
-        <!-- TIMELINE PANEL -->
-        <div id="timeline" class="panel">
-            <div class="timeline">
-                <div class="tl-item">
-                    <div class="tl-dot"></div>
-                    <div class="tl-week">Week 1–2</div>
-                    <div class="tl-title">The Adjustment Phase</div>
-                    <div class="tl-desc">Your body adapts to the new volume. Expect soreness, some fatigue. Water weight
-                        drops 1–2 kg. Bloating reduces noticeably. Stick to the plan even if the scale doesn't move much
-                        — internal changes are happening.</div>
-                </div>
-                <div class="tl-item">
-                    <div class="tl-dot"></div>
-                    <div class="tl-week">Week 3–4</div>
-                    <div class="tl-title">First Visible Changes</div>
-                    <div class="tl-desc">Waist definition begins appearing. Clothes feel slightly looser. Energy
-                        improves. Scale drops 1–1.5 kg of actual fat. Strength in lifts starts climbing — this is
-                        recomposition working.</div>
-                </div>
-                <div class="tl-item">
-                    <div class="tl-dot"></div>
-                    <div class="tl-week">Week 5–6</div>
-                    <div class="tl-title">Momentum Builds</div>
-                    <div class="tl-desc">Belly visibly flatter. Muscle tone emerging in chest, shoulders, arms. People
-                        start noticing. This is the phase where most people quit — don't. You're 70% there.</div>
-                </div>
-                <div class="tl-item">
-                    <div class="tl-dot"></div>
-                    <div class="tl-week">Week 7–8</div>
-                    <div class="tl-title">Transformation Complete</div>
-                    <div class="tl-desc">3–5 cm off waist. 2–3 kg fat lost, muscle gained. Significantly leaner
-                        physique. Lower belly pouch reduced. Build on this — you now have momentum and habits locked in.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TIPS PANEL -->
-        <div id="tips" class="panel">
-            <div class="tips-grid" id="tipsGrid"></div>
-        </div>
-
-    </div>
-
-    <!-- Scripts -->
-    <script src="js/app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
-
 </html>

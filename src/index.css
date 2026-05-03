@@ -30,17 +30,16 @@ body {
     min-height: 100svh;
     overflow-x: hidden;
     line-height: 1.6;
-    /* REMOVE THIS LINE: padding-top: env(safe-area-inset-top); */
 }
 
 /* HEADER */
 header {
-    /* Add the safe area padding here instead */
-    padding: calc(40px + env(safe-area-inset-top)) 24px 40px;
+    padding: calc(70px + env(safe-area-inset-top)) 24px 40px;
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
     background: linear-gradient(to bottom, #111, var(--bg));
+    text-align: left;
 }
 
 header::before {
@@ -65,7 +64,7 @@ header::before {
 
 h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 12vw, 84px);
+    font-size: clamp(40px, 10vw, 84px);
     line-height: 0.9;
     color: var(--text);
     letter-spacing: 1px;
@@ -96,11 +95,6 @@ h1 span {
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.stat:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-}
-
 .stat strong {
     color: var(--accent);
     font-size: 18px;
@@ -116,7 +110,7 @@ h1 span {
     border-bottom: 1px solid var(--border);
     overflow-x: auto;
     position: sticky;
-    top: env(safe-area-inset-top);
+    top: 0;
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(12px);
     z-index: 100;
@@ -143,10 +137,6 @@ h1 span {
     border-left: none;
     border-right: none;
     font-family: 'DM Sans', sans-serif;
-}
-
-.tab:hover {
-    color: var(--text);
 }
 
 .tab.active {
@@ -182,11 +172,6 @@ h1 span {
     white-space: nowrap;
 }
 
-.sub-tab:hover:not(.active) {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.05);
-}
-
 .sub-tab.active {
     background: var(--accent);
     color: #000;
@@ -198,27 +183,7 @@ h1 span {
     padding: 40px 24px;
     max-width: 1000px;
     margin: 0 auto;
-}
-
-.panel {
-    display: none;
-    animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.panel.active {
-    display: block;
+    text-align: left;
 }
 
 /* WEEK SELECTOR */
@@ -246,11 +211,6 @@ h1 span {
     white-space: nowrap;
 }
 
-.week-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
 .week-btn.active {
     background: var(--accent);
     color: #000;
@@ -271,11 +231,6 @@ h1 span {
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
-}
-
-.day-card:hover {
-    border-color: #444;
-    transform: translateX(4px);
 }
 
 .day-header {
@@ -309,25 +264,10 @@ h1 span {
     border-radius: 20px;
 }
 
-.type-push {
-    background: rgba(255, 77, 46, 0.15);
-    color: var(--accent2);
-}
-
-.type-pull {
-    background: rgba(60, 255, 160, 0.12);
-    color: var(--green);
-}
-
-.type-legs {
-    background: rgba(232, 255, 60, 0.12);
-    color: var(--accent);
-}
-
-.type-rest {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--muted);
-}
+.type-push { background: rgba(255, 77, 46, 0.15); color: var(--accent2); }
+.type-pull { background: rgba(60, 255, 160, 0.12); color: var(--green); }
+.type-legs { background: rgba(232, 255, 60, 0.12); color: var(--accent); }
+.type-rest { background: rgba(255, 255, 255, 0.06); color: var(--muted); }
 
 .checkbox {
     width: 24px;
@@ -345,7 +285,6 @@ h1 span {
 .checkbox.checked {
     background: var(--accent);
     border-color: var(--accent);
-    transform: scale(1.1);
 }
 
 .checkbox.checked::after {
@@ -357,26 +296,8 @@ h1 span {
 
 .day-body {
     padding: 0 24px 24px;
-    display: none;
     border-top: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.02);
-}
-
-.day-body.open {
-    display: block;
-    animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        max-height: 0;
-    }
-
-    to {
-        opacity: 1;
-        max-height: 1000px;
-    }
 }
 
 .exercise-list {
@@ -393,15 +314,6 @@ h1 span {
     gap: 16px;
 }
 
-.exercise-item:last-child {
-    border-bottom: none;
-}
-
-.ex-name {
-    font-size: 15px;
-    font-weight: 500;
-}
-
 .ex-sets {
     font-size: 12px;
     color: var(--accent);
@@ -409,60 +321,6 @@ h1 span {
     padding: 4px 12px;
     border-radius: 20px;
     font-weight: 600;
-}
-
-.cardio-note {
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(232, 255, 60, 0.08);
-    border: 1px solid rgba(232, 255, 60, 0.2);
-    border-radius: 12px;
-    font-size: 13px;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.cardio-note::before {
-    content: '🔥';
-}
-
-/* PROGRESS BAR */
-.progress-wrap {
-    margin-bottom: 40px;
-    background: var(--surface);
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-}
-
-.progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 12px;
-}
-
-.progress-label span:last-child {
-    color: var(--accent);
-    font-weight: 700;
-}
-
-.progress-bar {
-    height: 8px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 4px;
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 10px rgba(232, 255, 60, 0.3);
 }
 
 /* MEAL PLAN */
@@ -488,12 +346,6 @@ h1 span {
     letter-spacing: 1px;
 }
 
-.meal-day-kcal {
-    font-size: 13px;
-    color: var(--muted);
-    margin-left: auto;
-}
-
 .meal-day-kcal span {
     color: var(--green);
     font-weight: 700;
@@ -501,13 +353,8 @@ h1 span {
 
 .meal-day-body {
     padding: 0 24px 24px;
-    display: none;
     border-top: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.02);
-}
-
-.meal-day-body.open {
-    display: block;
 }
 
 .meal-row {
@@ -518,10 +365,6 @@ h1 span {
     border-bottom: 1px solid var(--border);
 }
 
-.meal-row:last-child {
-    border-bottom: none;
-}
-
 .meal-time {
     font-size: 11px;
     letter-spacing: 2px;
@@ -529,57 +372,6 @@ h1 span {
     color: var(--accent);
     font-weight: 700;
     min-width: 100px;
-    padding-top: 4px;
-}
-
-.meal-food {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 4px;
-}
-
-.meal-macros {
-    font-size: 12px;
-    color: var(--muted);
-}
-
-/* TIPS */
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-}
-
-.tip-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    transition: all 0.3s ease;
-}
-
-.tip-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-5px);
-}
-
-.tip-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-}
-
-.tip-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-    color: var(--text);
-}
-
-.tip-text {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
 }
 
 /* TIMELINE */
@@ -612,7 +404,6 @@ h1 span {
     border-radius: 50%;
     background: var(--accent);
     border: 4px solid var(--bg);
-    box-shadow: 0 0 10px rgba(232, 255, 60, 0.4);
 }
 
 .tl-week {
@@ -621,49 +412,21 @@ h1 span {
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 .tl-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
-    margin-bottom: 8px;
 }
 
 .tl-desc {
     font-size: 14px;
     color: var(--muted);
-    line-height: 1.7;
-}
-
-.chevron {
-    color: var(--muted);
-    font-size: 12px;
-    transition: transform 0.3s ease;
-}
-
-.chevron.open {
-    transform: rotate(180deg);
 }
 
 @media (max-width: 600px) {
-    .content {
-        padding: 24px 16px;
-    }
-
-    header {
-        padding: 40px 16px 30px;
-    }
-
-    h1 {
-        font-size: 48px;
-    }
-
-    .stat {
-        min-width: 100%;
-    }
-
-    .tabs {
-        padding: 0 16px;
-    }
+    .content { padding: 24px 16px; }
+    header { padding: 60px 16px 30px; }
+    h1 { font-size: 44px; }
+    .stat { min-width: 100%; }
 }
