@@ -9,12 +9,30 @@ function App() {
     const saved = localStorage.getItem('recomp_weekChecks');
     return saved ? JSON.parse(saved) : {};
   });
+  const [progressLogs, setProgressLogs] = useState(() => {
+    const saved = localStorage.getItem('recomp_progressLogs');
+    return saved ? JSON.parse(saved) : {};
+  });
   const [openDays, setOpenDays] = useState({});
   const [openMeals, setOpenMeals] = useState({});
 
   useEffect(() => {
     localStorage.setItem('recomp_weekChecks', JSON.stringify(weekChecks));
   }, [weekChecks]);
+
+  useEffect(() => {
+    localStorage.setItem('recomp_progressLogs', JSON.stringify(progressLogs));
+  }, [progressLogs]);
+
+  const updateLog = (field, value) => {
+    setProgressLogs(prev => ({
+      ...prev,
+      [activeWeek]: {
+        ...prev[activeWeek],
+        [field]: value
+      }
+    }));
+  };
 
   const toggleCheck = (week, day, e) => {
     e.stopPropagation();
@@ -155,6 +173,68 @@ function App() {
     </div>
   );
 
+  const renderProgress = () => {
+    const currentLog = progressLogs[activeWeek] || { weight: '', waist: '' };
+    return (
+      <div className="panel active">
+        <div className="progress-card">
+          <div className="card-header">
+            <h3>Week {activeWeek} Sunday Log</h3>
+            <p>Log your stats every Sunday morning (empty stomach)</p>
+          </div>
+          <div className="input-grid">
+            <div className="input-group">
+              <label>Weight (kg)</label>
+              <input 
+                type="number" 
+                placeholder="00.0"
+                value={currentLog.weight} 
+                onChange={(e) => updateLog('weight', e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label>Waist (cm)</label>
+              <input 
+                type="number" 
+                placeholder="00"
+                value={currentLog.waist} 
+                onChange={(e) => updateLog('waist', e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="history-section">
+          <h3>Transformation History</h3>
+          <div className="history-list">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(w => {
+              const log = progressLogs[w];
+              if (!log || (!log.weight && !log.waist)) return null;
+              return (
+                <div key={w} className="history-item">
+                  <div className="hist-week">W{w}</div>
+                  <div className="hist-data">
+                    <span>{log.weight || '--'} kg</span>
+                    <span>{log.waist || '--'} cm</span>
+                  </div>
+                  {w > 1 && progressLogs[w-1] && (
+                    <div className="hist-change">
+                      {log.weight && progressLogs[w-1].weight && (
+                        <span className={log.weight < progressLogs[w-1].weight ? 'loss' : 'gain'}>
+                          {(log.weight - progressLogs[w-1].weight).toFixed(1)} kg
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderTips = () => (
     <div className="panel active">
       <div className="tips-grid">
@@ -187,6 +267,7 @@ function App() {
         <button className={`tab ${activeTab === 'routine' ? 'active' : ''}`} onClick={() => setActiveTab('routine')}>Daily Schedule</button>
         <button className={`tab ${activeTab === 'meals' ? 'active' : ''}`} onClick={() => setActiveTab('meals')}>Meal Plan</button>
         <button className={`tab ${activeTab === 'timeline' ? 'active' : ''}`} onClick={() => setActiveTab('timeline')}>Timeline</button>
+        <button className={`tab ${activeTab === 'progress' ? 'active' : ''}`} onClick={() => setActiveTab('progress')}>Progress Log</button>
         <button className={`tab ${activeTab === 'tips' ? 'active' : ''}`} onClick={() => setActiveTab('tips')}>Key Rules</button>
       </div>
 
@@ -195,6 +276,7 @@ function App() {
         {activeTab === 'routine' && renderRoutine()}
         {activeTab === 'meals' && renderMeals()}
         {activeTab === 'timeline' && renderTimeline()}
+        {activeTab === 'progress' && renderProgress()}
         {activeTab === 'tips' && renderTips()}
       </div>
     </div>
