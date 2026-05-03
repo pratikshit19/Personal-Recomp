@@ -82,83 +82,90 @@ const days = [
 
 const meals = [
     {
-        day: "Breakfast - Same Every Day",
-        kcal: "~450-480 kcal",
+        day: "☕ 5:50 AM — Pre-Workout (Fast Energy)",
+        kcal: "~100 kcal",
         meals: [
-            { time: "Option A", food: "4 whole eggs bhurji (onion, tomato, green chilli, haldi, salt) + 2 whole wheat rotis", macros: "~38g protein | 40g carbs | 18g fat" },
-            { time: "Option B", food: "Oats daliya with milk (1 cup oats + 250ml low fat milk + banana slices)", macros: "~20g protein | 60g carbs | 8g fat | add whey if using this" },
-            { time: "Always", food: "Black chai (no sugar) or black coffee - drink 500ml water first thing", macros: "0 kcal" },
+            { time: "Option A", food: "Black Coffee + 1 Small Banana", macros: "Quick carbs for energy" },
+            { time: "Option B", food: "Black Coffee + 2 Dates", macros: "Fast glycogen replenishment" },
         ]
     },
     {
-        day: "Mid-Morning Snack - Same Every Day",
-        kcal: "~200-250 kcal",
+        day: "🍳 7:20 AM — Post-Gym Breakfast (At Home)",
+        kcal: "~500 kcal",
         meals: [
-            { time: "Best Pick", food: "1 scoop whey protein in water + 1 banana or 1 apple", macros: "~28g protein | 28g carbs | 2g fat" },
-            { time: "No Whey?", food: "100g paneer (raw or lightly tawa-tossed with spices) + 1 fruit", macros: "~20g protein | 20g carbs | 10g fat" },
-            { time: "Note", food: "This is 1-1.5 hrs before lunch. Don't skip it.", macros: "" },
+            { time: "Protein", food: "4 whole eggs bhurji or 100g Paneer + 2 whole wheat rotis", macros: "~35g protein" },
+            { time: "Carbs", food: "Oats with milk and a few nuts", macros: "~45g carbs" },
+            { time: "Tip", food: "Eat this immediately after your shower to refuel fast.", macros: "" },
         ]
     },
     {
-        day: "Lunch - Meal Prep Sun & Wed",
-        kcal: "~600-650 kcal",
+        day: "🥤 11:00 AM — Mid-Morning Snack (at Office)",
+        kcal: "~200 kcal",
         meals: [
-            { time: "Protein", food: "200g chicken breast - boil in bulk with salt, haldi, jeera. Shred or slice. Use in curry, rice bowl, or wrap all week.", macros: "~46g protein" },
-            { time: "Carbs", food: "1.5 cups cooked white rice or 2 rotis (rice digests better post-morning workout)", macros: "~55-60g carbs" },
-            { time: "Veggie/Dal", food: "1 katori dal (moong/masoor/chana dal) OR sabzi (aloo gobi, palak, bhindi - minimal oil). Cook bulk.", macros: "~10-15g protein | 20g carbs" },
-            { time: "Side", food: "Kachumber salad - cucumber, tomato, onion, lemon, salt. Takes 2 min, eat daily.", macros: "~2g protein | 8g carbs | 0 fat" },
+            { time: "Best Pick", food: "1 Scoop Whey Protein + 1 Apple or Handful of roasted chana", macros: "~28g protein" },
+            { time: "Alt Pick", food: "Greek Yogurt (unflavoured) + few almonds", macros: "~15g protein" },
         ]
     },
     {
-        day: "Pre-Workout (1 hr before gym)",
-        kcal: "~150-200 kcal",
+        day: "🥗 1:30 PM — Office Lunch (High Protein)",
+        kcal: "~600 kcal",
         meals: [
-            { time: "Best Pick", food: "1 banana + black coffee (no sugar)", macros: "~1g protein | 27g carbs | 0 fat - fast energy" },
-            { time: "Alt Pick", food: "2 Marie biscuits + chai (no sugar) - simple, works fine", macros: "~2g protein | 24g carbs | 3g fat" },
-            { time: "Skip if", food: "You train first thing in morning - have only coffee and train fasted, eat breakfast after", macros: "" },
+            { time: "Protein", food: "200g Chicken Breast (Meal Prepped) or 1.5 katori Dal", macros: "~40g protein" },
+            { time: "Carbs", food: "1.5 cups Cooked Rice or 2 Rotis", macros: "~55g carbs" },
+            { time: "Veggie", food: "Seasonal Sabzi (minimal oil) + Large Salad", macros: "Crucial for digestion" },
         ]
     },
     {
-        day: "Post-Workout (within 30 min of gym)",
-        kcal: "~250-300 kcal",
+        day: "🌙 8:30 PM — Dinner (Directly After Office)",
+        kcal: "~500 kcal",
         meals: [
-            { time: "Must Have", food: "1 scoop whey protein in 300ml water or low fat milk", macros: "~25-35g protein | 5-15g carbs | 2g fat" },
-            { time: "No Whey?", food: "4 egg whites omelette (quick tawa) + 1 roti", macros: "~20g protein | 20g carbs | 2g fat" },
-            { time: "Add-on", food: "1 banana or handful of chivda (plain, no fried stuff)", macros: "~25g carbs - refuels glycogen fast" },
+            { time: "Protein", food: "200g Chicken Curry or 150g Paneer Bhurji", macros: "~40g protein" },
+            { time: "Carbs", food: "1 Roti or 0.5 cup Rice (Keep it lower at night)", macros: "~25g carbs" },
+            { time: "Veggie", food: "Mixed Veg or Lauki Sabzi", macros: "Light on the stomach" },
         ]
     },
     {
-        day: "Dinner - Meal Prep with Lunch",
-        kcal: "~500-550 kcal",
+        day: "🛒 Weekly Prep (For your Office Routine)",
+        kcal: "Efficiency is Key",
         meals: [
-            { time: "Protein", food: "200g chicken curry (simple - tomato onion masala, minimal oil) OR 150g paneer bhurji OR 2 boiled eggs + dal", macros: "~40-46g protein" },
-            { time: "Carbs", food: "1 cup rice or 1-2 rotis. Keep carbs slightly lower at dinner than lunch.", macros: "~35-45g carbs" },
-            { time: "Veggie", food: "Palak, lauki, tinda, turai - low cal sabzis. Cook 2-3 days worth at once.", macros: "~5g protein | 10g carbs" },
-            { time: "Tip", food: "Finish dinner 2 hrs before sleep. No midnight snacking.", macros: "" },
-        ]
-    },
-    {
-        day: "Weekly Meal Prep Checklist",
-        kcal: "Prep once, eat all week",
-        meals: [
-            { time: "Boil", food: "600-700g chicken breast in one go. Store in fridge. Use for 3 days lunch + dinner.", macros: "Lasts 3-4 days refrigerated" },
-            { time: "Cook", food: "Big pot of dal (moong or masoor). Divide into daily katoris.", macros: "Lasts 3-4 days" },
-            { time: "Cook", food: "2-3 sabzis in bulk. Rotate through the week.", macros: "Lasts 3-4 days" },
-            { time: "Boil", food: "6-8 eggs. Keep in fridge for quick snacks or post-workout.", macros: "Lasts 5-6 days" },
-            { time: "Stock", food: "Bananas, apples, cucumbers, tomatoes, onions - your daily staples.", macros: "No prep needed" },
+            { time: "Batch 1", food: "Boil 1kg Chicken on Sunday night. Divide into 150-200g portions.", macros: "Covers all lunches" },
+            { time: "Batch 2", food: "Prep salad jars (Cucumber, Tomato, Onion) for 3 days.", macros: "No morning rush" },
+            { time: "Quick", food: "Keep Whey & Nuts at your office desk.", macros: "Safety net for busy days" },
         ]
     }
 ];
 
+const routineMorning = [
+    { time: "05:50 AM", activity: "Wake Up + Pre-Workout Coffee", icon: "⏰" },
+    { time: "06:00 AM", activity: "Gym Session (PPL Split)", icon: "🏋️‍♂️" },
+    { time: "07:15 AM", activity: "Home: Shower & Post-Workout Meal", icon: "🍱" },
+    { time: "07:45 AM", activity: "Leave for Office (2-hour commute)", icon: "🚗" },
+    { time: "11:00 AM", activity: "Snack: Whey + Fruit", icon: "🥤" },
+    { time: "01:30 PM", activity: "Meal 2: Lunch", icon: "🥗" },
+    { time: "06:30 PM", activity: "Leave Office", icon: "🏢" },
+    { time: "08:30 PM", activity: "Reach Home + Dinner", icon: "🏠" },
+    { time: "10:30 PM", activity: "Sleep (7.5 Hours)", icon: "😴" },
+];
+
+const routineEvening = [
+    { time: "05:50 AM", activity: "Wake Up + Coffee", icon: "⏰" },
+    { time: "06:20 AM", activity: "Leave for Office (Early start)", icon: "🚗" },
+    { time: "08:30 AM", activity: "Reach Office + Breakfast", icon: "🍳" },
+    { time: "11:00 AM", activity: "Snack: Fruit/Nuts", icon: "🍎" },
+    { time: "01:30 PM", activity: "Meal 2: Lunch", icon: "🥗" },
+    { time: "06:30 PM", activity: "Leave Office", icon: "🏢" },
+    { time: "08:30 PM", activity: "Gym Session (PPL Split)", icon: "🏋️‍♂️" },
+    { time: "09:45 PM", activity: "Post-Workout Dinner", icon: "🍱" },
+    { time: "11:30 PM", activity: "Sleep (Shorter cycle)", icon: "😴" },
+];
+
 const tips = [
-    { icon: "😴", title: "Sleep 7-8 Hours", text: "Cortisol (stress hormone) directly causes belly fat storage. Poor sleep = slow fat loss. Non-negotiable." },
-    { icon: "🥩", title: "Hit 160g Protein Daily", text: "Protein preserves muscle during a deficit and keeps you full. Aim for a palm-sized protein source at every meal." },
-    { icon: "💧", title: "Drink 3-4L Water", text: "Hydration boosts metabolism, reduces bloating, and helps with hunger signals. Start every morning with 500ml before anything else." },
-    { icon: "📈", title: "Progressive Overload", text: "Add weight or reps every 1-2 weeks. Your body only changes when challenged. Track your lifts - even in a phone note." },
-    { icon: "🚫", title: "Cut Liquid Calories", text: "No sodas, juices, or alcohol. These alone can account for 300-500 hidden calories daily with zero satiety." },
-    { icon: "⏰", title: "Eat on a Schedule", text: "Same meal times daily regulates cortisol and hunger hormones. Random eating patterns make fat loss harder." },
-    { icon: "🔥", title: "Don't Skip Cardio Finisher", text: "15-20 min incline walk or rowing after lifting hits fasted-like fat burning state when glycogen is low." },
-    { icon: "📸", title: "Track Progress Right", text: "Take waist measurements + photos every 2 weeks. Scale weight fluctuates daily - measurements tell the real story." },
+    { icon: "😴", title: "Sleep is Priority", text: "Since you wake at 5:50 AM, you MUST be in bed by 10:30 PM. Recovery happens during sleep, not in the gym." },
+    { icon: "🚗", title: "Commute = Recovery", text: "Use your 2-hour commute to stay hydrated. Drink at least 1L of water during your drive/ride." },
+    { icon: "🥩", title: "160g Protein Goal", text: "Hitting protein at 11 AM and 1:30 PM is crucial to prevent muscle loss during your long office hours." },
+    { icon: "📈", title: "Progressive Overload", text: "Track your lifts in a phone note. Try to add 1kg or 1 rep every single week." },
+    { icon: "🚫", title: "No Liquid Calories", text: "Avoid office tea/coffee with sugar. Stick to black coffee or green tea." },
+    { icon: "📸", title: "Waist Measurements", text: "Take photos and waist measurements every Sunday. The scale lies, the mirror doesn't." },
 ];
 
 // App State
@@ -170,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDays(currentWeek);
     renderMeals();
     renderTips();
+    renderRoutine('morning');
     
     // Register Service Worker
     if ('serviceWorker' in navigator) {
@@ -230,9 +238,6 @@ function toggleElement(header) {
     const body = header.nextElementSibling;
     const chevron = header.querySelector('.chevron');
     const isOpen = body.classList.contains('open');
-    
-    // Close others if needed (optional)
-    // document.querySelectorAll('.day-body.open, .meal-day-body.open').forEach(el => el.classList.remove('open'));
     
     body.classList.toggle('open');
     chevron.classList.toggle('open');
@@ -316,6 +321,33 @@ function renderTips() {
     });
 }
 
+let currentRoutine = 'morning';
+function renderRoutine(type) {
+    const grid = document.getElementById('routineGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    const data = type === 'morning' ? routineMorning : routineEvening;
+    
+    data.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'tl-item';
+        d.innerHTML = `
+            <div class="tl-dot"></div>
+            <div class="tl-week">${item.time}</div>
+            <div class="tl-title">${item.icon} ${item.activity}</div>
+        `;
+        grid.appendChild(d);
+    });
+}
+
+window.setRoutine = function(type, event) {
+    currentRoutine = type;
+    document.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderRoutine(type);
+};
+
 window.showTab = function(id, event) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -324,7 +356,6 @@ window.showTab = function(id, event) {
     if (event) {
         event.target.classList.add('active');
     } else {
-        // Fallback for initial load or manual calls
         const tab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.toLowerCase().includes(id));
         if (tab) tab.classList.add('active');
     }

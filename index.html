@@ -24,7 +24,7 @@
 <body>
 
     <header>
-        <div class="header-tag">📍 Your Personal Plan — 6'1" · 80kg · Skinny Fat</div>
+        <div class="header-tag">📍 Personalized Routine: 5:50 AM Wake Up | Morning Gym</div>
         <h1>30–60 DAY<span>BELLY FAT DESTROYER</span></h1>
         <div class="header-stats">
             <div class="stat"><strong>5–6x</strong>Weekly Sessions</div>
@@ -36,6 +36,7 @@
 
     <div class="tabs">
         <button class="tab active" onclick="showTab('workout', event)">Workout Tracker</button>
+        <button class="tab" onclick="showTab('routine', event)">Daily Schedule</button>
         <button class="tab" onclick="showTab('meals', event)">Meal Plan</button>
         <button class="tab" onclick="showTab('timeline', event)">Timeline</button>
         <button class="tab" onclick="showTab('tips', event)">Key Rules</button>
@@ -67,6 +68,15 @@
             </div>
 
             <div class="day-grid" id="dayGrid"></div>
+        </div>
+
+        <!-- ROUTINE PANEL -->
+        <div id="routine" class="panel">
+            <div class="sub-tabs">
+                <button class="sub-tab active" onclick="setRoutine('morning', event)">Morning Gym</button>
+                <button class="sub-tab" onclick="setRoutine('evening', event)">Evening Gym</button>
+            </div>
+            <div class="timeline" id="routineGrid"></div>
         </div>
 
         <!-- MEAL PANEL -->
