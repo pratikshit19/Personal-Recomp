@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { workoutDays, meals, routineMorning, routineEvening, tips, timelineSteps } from './data/appData';
+import { workoutDays, mealsMorning, mealsEvening, routineMorning, routineEvening, tips, timelineSteps } from './data/appData';
 
 function App() {
   const [activeTab, setActiveTab] = useState('workout');
   const [activeWeek, setActiveWeek] = useState(1);
   const [routineType, setRoutineType] = useState('morning');
+  const meals = routineType === 'morning' ? mealsMorning : mealsEvening;
   const [weekChecks, setWeekChecks] = useState(() => {
     const saved = localStorage.getItem('recomp_weekChecks');
     return saved ? JSON.parse(saved) : {};

@@ -80,7 +80,7 @@ export const workoutDays = [
     }
 ];
 
-export const meals = [
+export const mealsMorning = [
     {
         day: "☕ 5:50 AM — Pre-Workout (Fast Energy)",
         kcal: "~100 kcal",
@@ -135,6 +135,69 @@ export const meals = [
     }
 ];
 
+export const mealsEvening = [
+    {
+        day: "⏰ 05:50 AM — Wake Up & Morning Kickstart",
+        kcal: "~100 kcal",
+        meals: [
+            { time: "Option A", food: "Green Tea or Black Coffee + 5 Almonds", macros: "Metabolism booster" },
+            { time: "Option B", food: "Warm Lemon Water + 2 Walnuts", macros: "Healthy fats to start the day" },
+        ]
+    },
+    {
+        day: "🍳 08:30 AM — Office Breakfast (Refuel after Commute)",
+        kcal: "~500 kcal",
+        meals: [
+            { time: "Protein", food: "4 egg whites scramble + 2 slices whole wheat toast", macros: "~30g protein" },
+            { time: "Carbs", food: "1 katori Oats/Muesli with skimmed milk & 1/2 apple", macros: "~45g carbs" },
+            { time: "Tip", food: "Keep it light to maintain focus at the start of your workday.", macros: "" },
+        ]
+    },
+    {
+        day: "🥤 11:00 AM — Mid-Morning Snack (at Office)",
+        kcal: "~200 kcal",
+        meals: [
+            { time: "Best Pick", food: "1 Scoop Whey Protein + 1 Apple or Handful of roasted chana", macros: "~28g protein" },
+            { time: "Alt Pick", food: "Greek Yogurt (unflavoured) + few almonds", macros: "~15g protein" },
+        ]
+    },
+    {
+        day: "🥗 01:30 PM — Office Lunch (High Protein & Fiber)",
+        kcal: "~600 kcal",
+        meals: [
+            { time: "Protein", food: "200g Grilled Chicken Breast or 150g Low-fat Paneer curry", macros: "~40g protein" },
+            { time: "Carbs", food: "1.5 cups Brown Rice or 2 Multigrain Rotis", macros: "~55g carbs" },
+            { time: "Veggie", food: "Stir-fried Broccoli, Peppers + Large Cucumber Salad", macros: "Satiety & gut health" },
+        ]
+    },
+    {
+        day: "🍌 06:00 PM — Pre-Workout Fuel (Leaving Office)",
+        kcal: "~150 kcal",
+        meals: [
+            { time: "Option A", food: "Black Coffee + 1 Medium Banana", macros: "Perfect pre-workout pump carbs" },
+            { time: "Option B", food: "2 Dates + black coffee", macros: "Quick glycogen boost for evening lift" },
+        ]
+    },
+    {
+        day: "🍱 09:45 PM — Post-Workout Dinner (Muscle Repair & Recomp)",
+        kcal: "~500 kcal",
+        meals: [
+            { time: "Protein", food: "200g Baked Fish/Chicken or 150g Paneer Bhurji", macros: "~42g protein" },
+            { time: "Carbs", food: "1 Roti or 0.5 cup Quinoa (Lower carbs before bed)", macros: "~20g carbs" },
+            { time: "Veggie", food: "Steamed Asparagus, Zucchini, or sautéed spinach", macros: "Super low-calorie volume" },
+        ]
+    },
+    {
+        day: "🛒 Weekly Prep (For Evening Gym-goers)",
+        kcal: "Efficiency is Key",
+        meals: [
+            { time: "Batch 1", food: "Grill chicken/paneer on Sundays & Wednesdays to keep it fresh.", macros: "Covers dinner" },
+            { time: "Batch 2", food: "Keep pre-workout fruit/banana & black coffee mix at your desk.", macros: "No gym rush" },
+            { time: "Quick", food: "Prepare your gym bag the night before so you leave the office straight to the gym.", macros: "Consistency locked in" },
+        ]
+    }
+];
+
 export const routineMorning = [
     { time: "05:50 AM", activity: "Wake Up + Pre-Workout Coffee", icon: "⏰" },
     { time: "06:00 AM", activity: "Gym Session (PPL Split)", icon: "🏋️‍♂️" },
@@ -160,12 +223,14 @@ export const routineEvening = [
 ];
 
 export const tips = [
-    { icon: "😴", title: "Sleep is Priority", text: "Since you wake at 5:50 AM, you MUST be in bed by 10:30 PM. Recovery happens during sleep, not in the gym." },
-    { icon: "🚗", title: "Commute = Recovery", text: "Use your 2-hour commute to stay hydrated. Drink at least 1L of water during your drive/ride." },
-    { icon: "🥩", title: "160g Protein Goal", text: "Hitting protein at 11 AM and 1:30 PM is crucial to prevent muscle loss during your long office hours." },
-    { icon: "📈", title: "Progressive Overload", text: "Track your lifts in a phone note. Try to add 1kg or 1 rep every single week." },
-    { icon: "🚫", title: "No Liquid Calories", text: "Avoid office tea/coffee with sugar. Stick to black coffee or green tea." },
-    { icon: "📸", title: "Waist Measurements", text: "Take photos and waist measurements every Sunday. The scale lies, the mirror doesn't." },
+    { icon: "⚖️", title: "Calorie Deficit is King", text: "You must stick to your 2,050 kcal target. Track every splash of cooking oil, handful of nuts, and bite of food. Untracked calories are the #1 reason fat loss stalls." },
+    { icon: "🚶‍♂️", title: "10,000 Steps Daily (NEAT)", text: "The gym burns calories, but your step count keeps your metabolism alive. Take active 10-min walks during office calls, use the stairs, or pace during your 2-hour commute." },
+    { icon: "🥩", title: "160g Protein Non-Negotiable", text: "Protein has a high Thermic Effect (burns 20-30% of its calories just to digest) and keeps you full. Most importantly, it preserves your muscle so you lose PURE fat." },
+    { icon: "😴", title: "7.5+ Hours Sleep", text: "If you sleep under 6 hours, your body produces more Cortisol (stores belly fat) and Ghrelin (cravings skyrocket). Sleep is where fat loss and recovery actually happen." },
+    { icon: "🚫", title: "Zero Liquid Calories", text: "Absolutely no sugary office tea, coffee, fruit juices, or sodas. They trigger massive insulin spikes which shuts down your body's ability to burn fat instantly." },
+    { icon: "💧", title: "4 Liters of Water", text: "Dehydration is often mistaken for hunger. Drink 1L during your 2-hour commute and keep a bottle at your desk. Proper hydration increases calorie burn and flushes toxins." },
+    { icon: "📏", title: "Track Waist, Not Just Weight", text: "Scale weight fluctuates with water, salt, and bowel movements. Measure your waist at navel level every Sunday. If the waist shrinks but weight is same, you are building muscle." },
+    { icon: "🍳", title: "90/10 Rule for Consistency", text: "90% of your meals must come from single-ingredient, clean sources (chicken, eggs, paneer, veggies, whole grains). Save 10% for flexible dieting so you don't binge." }
 ];
 
 export const timelineSteps = [
